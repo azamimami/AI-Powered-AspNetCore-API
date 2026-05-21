@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="BtkAkademiAIblog.WebApi/BtkAkademiAIblog.WebApi.csproj" />
+  <Project Path="BtkAkademiAIblog.webUI/BtkAkademiAIblog.webUI.csproj" />
 </Solution>

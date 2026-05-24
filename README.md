@@ -1,6 +1,6 @@
 # Proje Hakkında
 
-Bu proje, # ASP.NET Core kullanılarak modern, ölçeklenebilir ve yapay zekâ destekli RESTful API geliştirme süreçlerini içermektedir.
+Bu proje, #ASP.NET Core kullanılarak modern, ölçeklenebilir ve yapay zekâ destekli RESTful API geliştirme süreçlerini içermektedir.
 
 Projede çok katmanlı (N-Layer) mimari yaklaşımı uygulanmakta ve gerçek dünya senaryolarına uygun backend sistemleri geliştirilmektedir.
 

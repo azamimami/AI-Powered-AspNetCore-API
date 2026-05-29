@@ -1,0 +1,68 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+
+<!doctype html>
+<html lang="zxx">
+@await Component.InvokeAsync("LayoutHeadComponentPartial")
+  <body>
+
+  @await Component.InvokeAsync("LayoutRightSideBarComponentPartial")
+
+
+   <header id="back-header" class="back-header">
+
+    @await Component.InvokeAsync("LayoutHeaderComponentPartial")
+
+
+  @await Component.InvokeAsync("LayoutNavbarComponentPartial")
+
+
+
+  </header>
+  @RenderBody()
+
+    @* <div class="back-wrapper">
+      <!--================= Back Hero Start Here =================-->
+      <div class="back-hero-area md-mt-40">
+        <div class="container">
+          <div class="row">
+      @await Component.InvokeAsync("DefaultSliderComponentPartial")
+      @await Component.InvokeAsync("DefaultFeatureComponentPartial")
+
+
+          </div>
+      @await Component.InvokeAsync("DefaultGetCategoriesWithLastArticleComponentPartial")
+
+
+        </div>
+      </div> *@
+
+       @await Component.InvokeAsync("DefaultTrendingStoriesComponentPartial")
+
+      @await Component.InvokeAsync("DefaultLatestPostComponentPartial")
+
+
+      @await Component.InvokeAsync("SubFeatureComponentPartial")
+
+
+      @await Component.InvokeAsync("DefaultTradingVideoPartial")
+
+      @await Component.InvokeAsync("SecondFeatureComponentPartial")
+
+      @await Component.InvokeAsync("DefaultSubSliderComponentPartial")
+
+
+
+    <!--================= Footer Section Start Here =================-->
+         @await Component.InvokeAsync("LayoutFooterComponentPartial")
+
+    <!--================= Scroll to Top End =================-->
+    @await Component.InvokeAsync("LayoutScriptsComponentPartial")
+
+  </body>
+</html>

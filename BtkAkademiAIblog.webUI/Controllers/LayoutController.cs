@@ -4,14 +4,9 @@ namespace BtkAkademiAIblog.webUI.Controllers
 {
     public class LayoutController : Controller
     {
-        public IActionResult Header()
+        public IActionResult Index()
         {
-            return PartialView();
-        }
-
-        public IActionResult Footer()
-        {
-            return PartialView();
+            return View();
         }
     }
 }

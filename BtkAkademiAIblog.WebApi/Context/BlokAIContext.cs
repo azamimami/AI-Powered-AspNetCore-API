@@ -1,4 +1,4 @@
-﻿using BtkAkademiAIblog.WebApi.Entities;
+using BtkAkademiAIblog.WebApi.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BtkAkademiAIblog.WebApi.Context
@@ -7,10 +7,7 @@ namespace BtkAkademiAIblog.WebApi.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=BtkAkademiAIBlogDb;" +
-                "Trusted_Connection=True;TrustServerCertificate=True;");
-
-
+            optionsBuilder.UseSqlite("Data Source=blog.db");
         }
         
         public DbSet<Category> Categories { get; set; }
@@ -19,9 +16,5 @@ namespace BtkAkademiAIblog.WebApi.Context
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<TradingVideo> TradingVideos { get; set; }
-
-
-
-
     }
 }

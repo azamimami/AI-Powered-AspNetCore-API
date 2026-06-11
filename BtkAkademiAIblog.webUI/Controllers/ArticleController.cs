@@ -11,6 +11,7 @@ namespace BtkAkademiAIblog.webUI.Controllers
 
     public IActionResult ArticleList()
     {
+      
       return View();
     }
     public IActionResult ArticleListByCategory()

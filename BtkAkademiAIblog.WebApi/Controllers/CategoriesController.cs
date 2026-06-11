@@ -33,6 +33,9 @@ namespace BtkAkademiAIblog.WebApi.Controllers
         public IActionResult DeletCategory(int id)
         {
             var value = _context.Categories.Find(id);
+            if (value == null)            {
+                return NotFound("Kategori bulunamadi");
+            }
             _context.Categories.Remove(value);
             _context.SaveChanges();
             return Ok("Kategory silindi islem basarili.");

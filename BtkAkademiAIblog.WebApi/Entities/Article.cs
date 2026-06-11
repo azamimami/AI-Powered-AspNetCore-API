@@ -2,11 +2,13 @@
 {
     public class Article
     {
-        public int ArticleId { get; set; }
-        public string Title { get; set; }
-        public string CoverImageUrl { get; set; }
-        public string MainImageUrl { get; set; }
-        public string Content { get; set; }
-        public string CreatedDate { get; set; }
-    }
+        public int Id { get; set; }
+        public required string Title { get; set; }
+        public required string CoverImageUrl { get; set; }
+        public required string MainImageUrl { get; set; }
+        public required string Content { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
+  }
 }

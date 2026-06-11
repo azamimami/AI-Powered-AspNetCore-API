@@ -3,6 +3,7 @@ using System;
 using BtkAkademiAIblog.WebApi.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BtkAkademiAIblog.WebApi.Migrations
 {
     [DbContext(typeof(BlokAIContext))]
-    partial class BlokAIContextModelSnapshot : ModelSnapshot
+    [Migration("20260609213020_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.9");
@@ -42,9 +45,6 @@ namespace BtkAkademiAIblog.WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -65,8 +65,6 @@ namespace BtkAkademiAIblog.WebApi.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Articles");
                 });
@@ -172,20 +170,6 @@ namespace BtkAkademiAIblog.WebApi.Migrations
                     b.HasKey("TradingVideoId");
 
                     b.ToTable("TradingVideos");
-                });
-
-            modelBuilder.Entity("BtkAkademiAIblog.WebApi.Entities.Article", b =>
-                {
-                    b.HasOne("BtkAkademiAIblog.WebApi.Entities.Category", "Category")
-                        .WithMany("Articles")
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("BtkAkademiAIblog.WebApi.Entities.Category", b =>
-                {
-                    b.Navigation("Articles");
                 });
 #pragma warning restore 612, 618
         }

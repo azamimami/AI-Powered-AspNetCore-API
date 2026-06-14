@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<BlokAIContext>();
+builder.Services.AddAutoMapper(typeof(Program));
 
 
 // Controllers

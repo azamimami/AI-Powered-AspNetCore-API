@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using BtkAkademiAIblog.WebApi.Context;
 using BtkAkademiAIblog.WebApi.Entities;
-using System;  // Add this for DateTime
+using System;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using BtkAkademiAIblog.WebApi.Dtos.ArticleDtos;  // Add this for DateTime
 
 namespace BtkAkademiAIblog.WebApi.Controllers;
 
@@ -10,23 +13,27 @@ namespace BtkAkademiAIblog.WebApi.Controllers;
 public class ArticlesController : ControllerBase  // Fixed: ControllerBase instead of ControllersBase
 {
   private readonly BlokAIContext _context;
-  public ArticlesController(BlokAIContext context)
+  private readonly IMapper _mapper;
+  public ArticlesController(BlokAIContext context, IMapper mapper)
   {
     _context = context;
+    _mapper = mapper;
   }
 
   [HttpGet]
   public IActionResult ArticleList()
   {
-    var values = _context.Articles.ToList();  // Use plural "Articles" consistently
-    return Ok(values);
+    var values = _context.Articles.Include(x => x.Category).ToList();  // Use plural "Articles" consistently
+    var dto = _mapper.Map < List<ResultArticleWithCategoryDto>>(values);
+    return Ok(dto);
   }
 
   [HttpPost]
-  public IActionResult CreatArticle(Article article)
+  public IActionResult CreatArticle(CreatArticleDto creatArticleDto)
   {
-    article.CreateDate = DateTime.Now;  // Fixed: DateTime.Now (capital N)
-    _context.Articles.Add(article);
+    creatArticleDto.CreateDate = DateTime.Now;  // Fixed: DateTime.Now (capital N)
+    var values = _mapper.Map<Article>(creatArticleDto);
+    _context.Articles.Add(values);
     _context.SaveChanges();
     return Ok("Ekleme Islemi Basarili");
   }
@@ -52,15 +59,16 @@ public class ArticlesController : ControllerBase  // Fixed: ControllerBase inste
     {
         return NotFound("Article not found");
     }
-    return Ok(value);
+    return Ok(_mapper.Map<GetArticleByIdDto>(value));
   }
 
   [HttpPut]
-  public IActionResult UpdateArticle(Article article)
+  public IActionResult UpdateArticle(UpdateArticleDto updateArticleDtoArticleDto)
   {
-    _context.Articles.Update(article);
+    var value = _mapper.Map<Article>(updateArticleDtoArticleDto);
+    _context.Articles.Update(value);
     _context.SaveChanges();
     return Ok("Guncelleme Islemi Basarili");
   }
-  
+
 }
